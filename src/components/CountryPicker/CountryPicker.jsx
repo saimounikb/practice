@@ -7,14 +7,16 @@ import styles from './CountryPicker.module.css';
 
 const Countries = ({ handleCountryChange }) => {
   const [countries, setCountries] = useState([]);
+  
 
-  useEffect(() => {
-    const fetchAPI = async () => {
-      setCountries(await fetchCountries());
-    };
-
-    fetchAPI();
-  }, []);
+  useEffect(()=>{
+  fetch('https://restcountries.com/v3.1/all?fields=name')
+  .then(res => res.json())
+  .then(data => {
+    const countryNames = data.map(country => country.name.common);
+    setCountries(countryNames);
+  })
+  .catch(error => console.error('Error:', error))},[])
 
   return (
     <FormControl className={styles.formControl}>
