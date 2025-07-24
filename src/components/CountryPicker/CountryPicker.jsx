@@ -9,6 +9,7 @@ const Countries = ({ handleCountryChange }) => {
   const [countries, setCountries] = useState([]);
   console.log(countries);
   console.log(countries);
+  console.log(countries);
   
 
   useEffect(()=>{
